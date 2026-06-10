@@ -12,7 +12,7 @@ const CONFIG = {
   emailjsTemplateId:'YOUR_EMAILJS_TEMPLATE_ID',
   emailjsPublicKey: 'YOUR_EMAILJS_PUBLIC_KEY',
   // Paste your Google Apps Script Web App URL here after deploying
-  googleScriptUrl:  'YOUR_GOOGLE_APPS_SCRIPT_URL',
+  googleScriptUrl:  'https://script.google.com/macros/s/AKfycbxnAJhiBjc1ZhfIXOsjXejRMCiHDPg4LC6P62xEiLIOxV5zAPTfT6FvxziJsNSElog7RA/exec',
   hotelName:        'Hotel Sahara',
   hotelPhone:       '020-25655405/6/8/9',
   hotelEmail:       'bookingsahara@rediffmail.com',
