@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed — Hotel Sahara Pune</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar scrolled">
+  <a href="index.html" class="navbar-logo">
+    <img src="images/logo-white.png" alt="Hotel Sahara" class="nav-logo-img">
+  </a>
+</nav>
+
+<div class="success-page">
+  <div class="success-card">
+    <div class="success-icon">✅</div>
+    <h1>Booking Confirmed!</h1>
+    <p>Thank you for choosing Hotel Sahara. Your reservation has been confirmed and a confirmation email has been sent to your inbox.</p>
+
+    <div class="booking-ref" id="bookingRef">Loading...</div>
+
+    <div class="booking-summary-table" id="bookingSummary">
+      <!-- Filled by JS -->
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:28px">
+      <a href="index.html" class="btn btn-navy">
+        <i class="fa fa-home"></i>&nbsp; Back to Home
+      </a>
+      <button class="btn btn-outline-navy" onclick="window.print()">
+        <i class="fa fa-print"></i>&nbsp; Print Receipt
+      </button>
+    </div>
+
+    <div style="background:var(--gold-pale);border-radius:var(--radius-lg);padding:20px;text-align:left">
+      <h4 style="color:var(--navy);margin-bottom:12px;font-family:var(--font-body);font-weight:600">
+        <i class="fa fa-info-circle text-gold"></i>&nbsp; Important Information
+      </h4>
+      <ul style="font-size:0.86rem;color:var(--gray);display:flex;flex-direction:column;gap:8px">
+        <li>✦ Check-in time: <strong>1:00 PM</strong> | Check-out: <strong>11:00 AM</strong></li>
+        <li>✦ Complimentary buffet breakfast is included</li>
+        <li>✦ GST will be charged extra at check-out</li>
+        <li>✦ Please carry a valid photo ID at check-in</li>
+        <li>✦ For any queries, call us at <a href="tel:02025655405" style="color:var(--navy)">020-25655405/6/8/9</a></li>
+        <li>✦ WhatsApp: <a href="https://wa.me/919822393889" target="_blank" style="color:var(--navy)">+91 98223 93889</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const params    = new URLSearchParams(window.location.search);
+    const bookingId = params.get('id');
+
+    if(!bookingId) {
+      window.location.href = 'index.html';
+      return;
+    }
+
+    // Load booking from localStorage
+    const bookings = JSON.parse(localStorage.getItem('saharaBookings') || '[]');
+    const booking  = bookings.find(b => b.bookingId === bookingId);
+
+    if(!booking) {
+      document.getElementById('bookingRef').textContent = bookingId;
+      document.getElementById('bookingSummary').innerHTML = '<p style="text-align:center;color:var(--gray)">Booking details not available. Please check your email confirmation.</p>';
+      return;
+    }
+
+    document.getElementById('bookingRef').textContent = `Booking ID: ${booking.bookingId}`;
+
+    const roomNames = { executive: 'Executive AC', deluxe: 'Deluxe AC' };
+    const occNames  = { single: 'Single Occupancy', double: 'Double Occupancy' };
+
+    document.getElementById('bookingSummary').innerHTML = `
+      <div class="summary-row"><span>Guest Name</span><span>${booking.guestName}</span></div>
+      <div class="summary-row"><span>Email</span><span>${booking.guestEmail}</span></div>
+      <div class="summary-row"><span>Phone</span><span>${booking.guestPhone}</span></div>
+      <div class="summary-row"><span>Room Type</span><span>${roomNames[booking.roomType]} Room</span></div>
+      <div class="summary-row"><span>Occupancy</span><span>${occNames[booking.occupancy]}</span></div>
+      <div class="summary-row"><span>Check-In</span><span>${formatDate(booking.checkIn)}</span></div>
+      <div class="summary-row"><span>Check-Out</span><span>${formatDate(booking.checkOut)}</span></div>
+      <div class="summary-row"><span>Duration</span><span>${booking.nights} Night${booking.nights>1?'s':''}</span></div>
+      ${booking.extraPersons > 0 ? `<div class="summary-row"><span>Extra Persons</span><span>${booking.extraPersons}</span></div>` : ''}
+      <div class="summary-row"><span>Payment ID</span><span>${booking.paymentId || 'N/A'}</span></div>
+      <div class="summary-row"><span><strong>Total Paid (incl. GST)</strong></span><span><strong>₹${parseFloat(booking.totalAmount).toLocaleString('en-IN', {minimumFractionDigits:2})}</strong></span></div>
+    `;
+  });
+
+  function formatDate(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    return d.toLocaleDateString('en-IN', { weekday:'short', day:'numeric', month:'long', year:'numeric' });
+  }
+</script>
+</body>
+</html>

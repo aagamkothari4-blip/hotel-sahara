@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rooms &amp; Booking — Hotel Sahara Pune</title>
+  <meta name="description" content="Book Executive AC or Deluxe AC rooms at Hotel Sahara Pune. Complimentary breakfast included. Best rates guaranteed.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="index.html" class="navbar-logo">
+    <img src="images/logo-white.png" alt="Hotel Sahara" class="nav-logo-img">
+  </a>
+  <ul class="navbar-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rooms.html" class="active">Our Rooms</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="rooms.html" class="btn btn-gold btn-sm" style="margin-left:8px">Book Now</a></li>
+  </ul>
+  <div class="navbar-toggle" id="navToggle" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <h1>Our Rooms</h1>
+  <div class="ornament"><span>✦</span></div>
+  <p>Choose your perfect stay — spacious, air-conditioned, and thoughtfully furnished</p>
+</section>
+
+<!-- BOOKING INFO BAR -->
+<div style="background:var(--gold-pale);border-bottom:1px solid var(--border);padding:14px 0">
+  <div class="container" style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:24px;font-size:0.85rem;color:var(--navy)">
+    <span><i class="fa fa-clock text-gold"></i>&nbsp; Check-in: <strong>1:00 PM</strong></span>
+    <span><i class="fa fa-clock text-gold"></i>&nbsp; Check-out: <strong>11:00 AM</strong></span>
+    <span><i class="fa fa-utensils text-gold"></i>&nbsp; <strong>Complimentary Buffet Breakfast</strong> included</span>
+    <span><i class="fa fa-percent text-gold"></i>&nbsp; GST extra as applicable</span>
+  </div>
+</div>
+
+<!-- ROOMS LIST -->
+<section class="section">
+  <div class="container">
+    <div class="rooms-list">
+
+      <!-- EXECUTIVE AC ROOM -->
+      <div class="room-detail-card fade-up" id="executive">
+        <div class="room-detail-img">
+          <img src="images/room-executive.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&q=80'"
+               alt="Executive AC Room">
+        </div>
+        <div class="room-detail-info">
+          <div class="room-type-label">Room Category 01</div>
+          <h3>Executive AC Room</h3>
+          <p>Our Executive AC rooms offer a perfect blend of comfort and functionality. Ideal for business travellers and couples seeking a well-appointed, cosy retreat in the heart of Pune.</p>
+          <ul class="room-detail-features">
+            <li>Air Conditioning</li>
+            <li>Satellite TV</li>
+            <li>Free High-Speed Wi-Fi</li>
+            <li>Mini Bar / Refrigerator</li>
+            <li>Direct Dial ISD / STO</li>
+            <li>Wardrobe &amp; Storage</li>
+            <li>Study / Work Desk</li>
+            <li>Complimentary Breakfast</li>
+            <li>24hr Room Service</li>
+            <li>Daily Housekeeping</li>
+          </ul>
+          <div class="room-pricing-box">
+            <h4>Room Tariff (Per Night)</h4>
+            <div class="pricing-row">
+              <span class="occ-label"><i class="fa fa-user text-gold"></i> Single Occupancy</span>
+              <span class="price-tag">₹2,300</span>
+            </div>
+            <div class="pricing-row">
+              <span class="occ-label"><i class="fa fa-user-friends text-gold"></i> Double Occupancy</span>
+              <span class="price-tag">₹2,800</span>
+            </div>
+            <div class="pricing-row">
+              <span class="occ-label" style="font-size:0.8rem;color:var(--gray)"><i class="fa fa-user-plus text-gold"></i> Extra Person</span>
+              <span style="font-size:0.9rem;color:var(--gray)">+ ₹600 / night</span>
+            </div>
+          </div>
+          <div class="room-actions">
+            <button class="btn btn-gold" onclick="openBookingModal('executive')">
+              <i class="fa fa-calendar-check"></i> Book Now
+            </button>
+            <a href="gallery.html" class="btn btn-outline-navy">
+              <i class="fa fa-images"></i> View Photos
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DELUXE AC ROOM -->
+      <div class="room-detail-card reverse fade-up" id="deluxe">
+        <div class="room-detail-img">
+          <img src="images/room-deluxe.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=900&q=80'"
+               alt="Deluxe AC Room">
+        </div>
+        <div class="room-detail-info">
+          <div class="room-type-label">Room Category 02</div>
+          <h3>Deluxe AC Room</h3>
+          <p>Our Deluxe AC rooms are larger and more luxuriously appointed, featuring a premium king-size bed, a comfortable sofa, and additional space to unwind. Perfect for extended stays and leisure travellers.</p>
+          <ul class="room-detail-features">
+            <li>Air Conditioning</li>
+            <li>Satellite TV</li>
+            <li>Free High-Speed Wi-Fi</li>
+            <li>Mini Bar / Refrigerator</li>
+            <li>Direct Dial ISD / STO</li>
+            <li>Wardrobe &amp; Storage</li>
+            <li>Sofa &amp; Lounge Area</li>
+            <li>Complimentary Breakfast</li>
+            <li>24hr Room Service</li>
+            <li>Daily Housekeeping</li>
+          </ul>
+          <div class="room-pricing-box">
+            <h4>Room Tariff (Per Night)</h4>
+            <div class="pricing-row">
+              <span class="occ-label"><i class="fa fa-user text-gold"></i> Single Occupancy</span>
+              <span class="price-tag">₹2,500</span>
+            </div>
+            <div class="pricing-row">
+              <span class="occ-label"><i class="fa fa-user-friends text-gold"></i> Double Occupancy</span>
+              <span class="price-tag">₹3,000</span>
+            </div>
+            <div class="pricing-row">
+              <span class="occ-label" style="font-size:0.8rem;color:var(--gray)"><i class="fa fa-user-plus text-gold"></i> Extra Person</span>
+              <span style="font-size:0.9rem;color:var(--gray)">+ ₹600 / night</span>
+            </div>
+          </div>
+          <div class="room-actions">
+            <button class="btn btn-gold" onclick="openBookingModal('deluxe')">
+              <i class="fa fa-calendar-check"></i> Book Now
+            </button>
+            <a href="gallery.html" class="btn btn-outline-navy">
+              <i class="fa fa-images"></i> View Photos
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.rooms-list -->
+
+    <!-- Policies -->
+    <div style="margin-top:60px;padding:32px;background:var(--cream);border-radius:var(--radius-lg);border:1px solid var(--border)" class="fade-up">
+      <h3 style="color:var(--navy);margin-bottom:20px;font-size:1.4rem">Policies &amp; Information</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;font-size:0.9rem">
+        <div>
+          <strong style="color:var(--gold)"><i class="fa fa-clock"></i> Check-In / Check-Out</strong>
+          <p style="margin-top:6px">Check-in from 1:00 PM · Check-out by 11:00 AM</p>
+        </div>
+        <div>
+          <strong style="color:var(--gold)"><i class="fa fa-percent"></i> Taxes</strong>
+          <p style="margin-top:6px">GST &amp; CST applicable as per government norms, charged extra.</p>
+        </div>
+        <div>
+          <strong style="color:var(--gold)"><i class="fa fa-credit-card"></i> Payments</strong>
+          <p style="margin-top:6px">We accept all major credit &amp; debit cards, UPI, and net banking.</p>
+        </div>
+        <div>
+          <strong style="color:var(--gold)"><i class="fa fa-times-circle"></i> Cancellation</strong>
+          <p style="margin-top:6px">Please contact us directly for cancellation or modification requests.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =====================================================
+     BOOKING MODAL
+     ===================================================== -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <h3>Reserve Your Room</h3>
+        <p id="modalRoomLabel">Hotel Sahara, Pune</p>
+      </div>
+      <div class="modal-close" onclick="closeBookingModal()">
+        <i class="fa fa-times"></i>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <!-- Step 1: Booking Details -->
+      <div id="step1">
+        <p class="form-section-title">Room &amp; Dates</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Room Type</label>
+            <select id="modalRoomType" onchange="calculatePrice()">
+              <option value="executive">Executive AC</option>
+              <option value="deluxe">Deluxe AC</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Occupancy</label>
+            <select id="modalOccupancy" onchange="calculatePrice()">
+              <option value="single">Single Occupancy</option>
+              <option value="double">Double Occupancy</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Check-In Date</label>
+            <input type="date" id="modalCheckin" onchange="calculatePrice()">
+          </div>
+          <div class="form-group">
+            <label>Check-Out Date</label>
+            <input type="date" id="modalCheckout" onchange="calculatePrice()">
+          </div>
+          <div class="form-group full">
+            <label>Extra Persons (₹600/person/night)</label>
+            <select id="modalExtraPersons" onchange="calculatePrice()">
+              <option value="0">None</option>
+              <option value="1">1 Extra Person</option>
+              <option value="2">2 Extra Persons</option>
+              <option value="3">3 Extra Persons</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Price Breakdown -->
+        <div class="price-breakdown" id="priceBreakdown">
+          <h4>Price Breakdown</h4>
+          <div class="breakdown-row"><span id="bdRoom">Executive AC (Single)</span><span id="bdRoomRate">₹2,300/night</span></div>
+          <div class="breakdown-row"><span id="bdNights">0 Nights</span><span id="bdRoomTotal">₹0</span></div>
+          <div class="breakdown-row" id="bdExtraRow" style="display:none"><span id="bdExtra">Extra Persons</span><span id="bdExtraTotal">₹0</span></div>
+          <div class="breakdown-row"><span>GST (12%)</span><span id="bdGst">₹0</span></div>
+          <div class="breakdown-row total-row"><span><strong>Total Amount</strong></span><span id="bdTotal"><strong>₹0</strong></span></div>
+        </div>
+
+        <p class="form-section-title">Guest Information</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" id="guestName" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label>Mobile Number *</label>
+            <input type="tel" id="guestPhone" placeholder="+91 XXXXX XXXXX" required>
+          </div>
+          <div class="form-group full">
+            <label>Email Address *</label>
+            <input type="email" id="guestEmail" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group full">
+            <label>Special Requests (Optional)</label>
+            <textarea id="guestRequests" rows="2" placeholder="Any special requirements or requests..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.modal-body -->
+
+    <div class="modal-footer">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <div>
+          <div style="font-size:0.75rem;color:var(--gray)">Total Payable (incl. GST)</div>
+          <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--navy);font-weight:600;line-height:1" id="footerTotal">₹ —</div>
+        </div>
+        <button class="btn btn-gold" onclick="proceedToPayment()" id="payBtn">
+          <i class="fa fa-lock"></i>&nbsp; Proceed to Pay
+        </button>
+      </div>
+      <p style="font-size:0.75rem;color:var(--gray);margin-top:12px;text-align:center">
+        <i class="fa fa-shield-alt text-gold"></i>&nbsp;
+        Secure payment powered by Razorpay &nbsp;·&nbsp; Your data is safe with us
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/919822393889?text=Hello%2C%20I%27d%20like%20to%20book%20a%20room%20at%20Hotel%20Sahara."
+   class="whatsapp-btn" target="_blank" rel="noopener" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Razorpay SDK -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<!-- Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script src="js/main.js"></script>
+<script src="js/booking.js"></script>
+
+<script>
+  // Flatpickr instances for booking modal
+  let checkinPicker, checkoutPicker;
+
+  function initModalDatePickers() {
+    const today    = new Date();
+    const tomorrow = new Date(today.getTime() + 86400000);
+
+    checkinPicker = flatpickr("#modalCheckin", {
+      minDate:    "today",
+      dateFormat: "Y-m-d",
+      altInput:   true,
+      altFormat:  "D, d M Y",
+      disableMobile: true,
+      onChange: function(selectedDates) {
+        if(selectedDates[0]) {
+          const next = new Date(selectedDates[0].getTime() + 86400000);
+          checkoutPicker.set('minDate', next);
+          if(checkoutPicker.selectedDates[0] && checkoutPicker.selectedDates[0] <= selectedDates[0]) {
+            checkoutPicker.setDate(next);
+          }
+          calculatePrice();
+        }
+      }
+    });
+
+    checkoutPicker = flatpickr("#modalCheckout", {
+      minDate:    tomorrow,
+      dateFormat: "Y-m-d",
+      altInput:   true,
+      altFormat:  "D, d M Y",
+      disableMobile: true,
+      onChange: function() { calculatePrice(); }
+    });
+  }
+
+  // Pre-fill from URL params
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const room    = params.get('room');
+    const checkin = params.get('checkin');
+    const checkout= params.get('checkout');
+
+    if(room && (room==='executive'||room==='deluxe')){
+      const el = document.getElementById(room);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    if(room && checkin && checkout){
+      setTimeout(()=>{
+        openBookingModal(room);
+        if(checkin)  checkinPicker?.setDate(checkin);
+        if(checkout) checkoutPicker?.setDate(checkout);
+        calculatePrice();
+      }, 600);
+    }
+  });
+</script>
+</body>
+</html>

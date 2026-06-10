@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Hotel Sahara</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ============================
+     LOGIN SCREEN
+     ============================ -->
+<div id="loginScreen" class="admin-login-screen">
+  <div class="admin-login-card">
+    <div style="font-size:2.5rem;margin-bottom:16px">🏨</div>
+    <h2>Staff Login</h2>
+    <p>Hotel Sahara Admin Dashboard</p>
+    <div class="admin-login-form">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="loginUser" placeholder="admin" autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password"
+               onkeypress="if(event.key==='Enter') doLogin()">
+      </div>
+      <div id="loginError" style="color:#EF4444;font-size:0.85rem;display:none">
+        <i class="fa fa-exclamation-circle"></i> Invalid username or password.
+      </div>
+      <button class="btn btn-gold btn-full" onclick="doLogin()">
+        <i class="fa fa-sign-in-alt"></i>&nbsp; Login
+      </button>
+    </div>
+    <p style="margin-top:20px;font-size:0.78rem;color:var(--gray)">
+      <a href="index.html" style="color:var(--gold)"><i class="fa fa-arrow-left"></i> Back to Website</a>
+    </p>
+  </div>
+</div>
+
+<!-- ============================
+     DASHBOARD (hidden until login)
+     ============================ -->
+<div id="dashboardScreen" class="admin-wrap" style="display:none">
+
+  <!-- Header -->
+  <div class="admin-header">
+    <div class="admin-logo">Hotel <span>Sahara</span> Admin</div>
+    <div class="admin-user">
+      <span><i class="fa fa-user-circle"></i>&nbsp; Admin</span>
+      <button onclick="doLogout()" class="btn btn-outline btn-sm" style="padding:6px 16px;font-size:0.75rem;color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.2)">
+        <i class="fa fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="admin-body">
+
+    <!-- Stats Row -->
+    <div class="admin-stats" id="adminStats">
+      <!-- Filled by JS -->
+    </div>
+
+    <!-- Controls -->
+    <div class="admin-controls">
+      <input type="text" class="admin-search" id="searchBox" placeholder="🔍  Search by name, email, booking ID..." oninput="renderTable()">
+      <select class="admin-select" id="filterStatus" onchange="renderTable()">
+        <option value="all">All Statuses</option>
+        <option value="confirmed">Confirmed</option>
+        <option value="pending">Pending</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+      <select class="admin-select" id="filterRoom" onchange="renderTable()">
+        <option value="all">All Rooms</option>
+        <option value="executive">Executive AC</option>
+        <option value="deluxe">Deluxe AC</option>
+      </select>
+      <button class="btn btn-navy btn-sm" onclick="exportCSV()">
+        <i class="fa fa-download"></i>&nbsp; Export CSV
+      </button>
+      <button class="btn btn-outline-navy btn-sm" onclick="clearAllBookings()" style="border-color:#EF4444;color:#EF4444">
+        <i class="fa fa-trash"></i>&nbsp; Clear All
+      </button>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <table class="bookings-table" id="bookingsTable">
+        <thead>
+          <tr>
+            <th>Booking ID</th>
+            <th>Guest Name</th>
+            <th>Contact</th>
+            <th>Room</th>
+            <th>Occupancy</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+            <th>Nights</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="bookingsBody">
+          <!-- Filled by JS -->
+        </tbody>
+      </table>
+    </div>
+    <div id="noBookings" class="no-bookings" style="display:none">
+      <div class="no-icon">📋</div>
+      <p>No bookings found.</p>
+    </div>
+
+  </div><!-- /.admin-body -->
+</div><!-- /.dashboard -->
+
+<script>
+  // ============================================================
+  // CONFIG — Change password here
+  // ============================================================
+  const ADMIN_USERNAME = 'admin';
+  const ADMIN_PASSWORD = 'Sahara@2024';
+
+  // ============================================================
+  // AUTH
+  // ============================================================
+  function doLogin() {
+    const user = document.getElementById('loginUser').value.trim();
+    const pass = document.getElementById('loginPass').value;
+    if(user === ADMIN_USERNAME && pass === ADMIN_PASSWORD) {
+      sessionStorage.setItem('saharaAdmin', 'true');
+      document.getElementById('loginScreen').style.display    = 'none';
+      document.getElementById('dashboardScreen').style.display = 'block';
+      loadDashboard();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+      document.getElementById('loginPass').value = '';
+    }
+  }
+
+  function doLogout() {
+    sessionStorage.removeItem('saharaAdmin');
+    document.getElementById('loginScreen').style.display    = 'flex';
+    document.getElementById('dashboardScreen').style.display = 'none';
+  }
+
+  // Check session on load
+  window.addEventListener('DOMContentLoaded', () => {
+    if(sessionStorage.getItem('saharaAdmin') === 'true') {
+      document.getElementById('loginScreen').style.display    = 'none';
+      document.getElementById('dashboardScreen').style.display = 'block';
+      loadDashboard();
+    }
+  });
+
+  // ============================================================
+  // DATA
+  // ============================================================
+  function getBookings() {
+    return JSON.parse(localStorage.getItem('saharaBookings') || '[]')
+           .sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+  }
+
+  function saveBookings(bookings) {
+    localStorage.setItem('saharaBookings', JSON.stringify(bookings));
+  }
+
+  function loadDashboard() {
+    renderStats();
+    renderTable();
+  }
+
+  // ============================================================
+  // STATS
+  // ============================================================
+  function renderStats() {
+    const bookings   = getBookings();
+    const total      = bookings.length;
+    const confirmed  = bookings.filter(b => b.status === 'confirmed').length;
+    const pending    = bookings.filter(b => b.status === 'pending').length;
+    const revenue    = bookings.filter(b => b.status === 'confirmed')
+                               .reduce((s,b) => s + parseFloat(b.totalAmount||0), 0);
+
+    document.getElementById('adminStats').innerHTML = `
+      <div class="stat-card"><h3>${total}</h3><p>Total Bookings</p></div>
+      <div class="stat-card green"><h3>${confirmed}</h3><p>Confirmed</p></div>
+      <div class="stat-card blue"><h3>${pending}</h3><p>Pending</p></div>
+      <div class="stat-card"><h3>₹${revenue.toLocaleString('en-IN',{maximumFractionDigits:0})}</h3><p>Revenue (Confirmed)</p></div>
+    `;
+  }
+
+  // ============================================================
+  // TABLE
+  // ============================================================
+  const ROOM_NAMES = { executive:'Executive AC', deluxe:'Deluxe AC' };
+  const OCC_NAMES  = { single:'Single', double:'Double' };
+
+  function renderTable() {
+    let bookings = getBookings();
+    const search = document.getElementById('searchBox').value.toLowerCase();
+    const fStatus= document.getElementById('filterStatus').value;
+    const fRoom  = document.getElementById('filterRoom').value;
+
+    if(search) {
+      bookings = bookings.filter(b =>
+        (b.guestName  ||'').toLowerCase().includes(search) ||
+        (b.guestEmail ||'').toLowerCase().includes(search) ||
+        (b.bookingId  ||'').toLowerCase().includes(search) ||
+        (b.guestPhone ||'').toLowerCase().includes(search)
+      );
+    }
+    if(fStatus !== 'all') bookings = bookings.filter(b => b.status === fStatus);
+    if(fRoom   !== 'all') bookings = bookings.filter(b => b.roomType === fRoom);
+
+    const tbody = document.getElementById('bookingsBody');
+
+    if(bookings.length === 0) {
+      tbody.innerHTML = '';
+      document.getElementById('noBookings').style.display   = 'block';
+      document.getElementById('bookingsTable').style.display = 'none';
+      return;
+    }
+
+    document.getElementById('noBookings').style.display   = 'none';
+    document.getElementById('bookingsTable').style.display = 'table';
+
+    tbody.innerHTML = bookings.map(b => `
+      <tr>
+        <td><code style="font-size:0.78rem;color:var(--navy)">${b.bookingId}</code></td>
+        <td><strong>${escHtml(b.guestName||'—')}</strong></td>
+        <td>
+          <div style="font-size:0.82rem">${escHtml(b.guestEmail||'')}</div>
+          <div style="font-size:0.82rem;color:var(--gray)">${escHtml(b.guestPhone||'')}</div>
+        </td>
+        <td>${ROOM_NAMES[b.roomType]||b.roomType}</td>
+        <td>${OCC_NAMES[b.occupancy]||b.occupancy}</td>
+        <td>${formatDate(b.checkIn)}</td>
+        <td>${formatDate(b.checkOut)}</td>
+        <td style="text-align:center">${b.nights}</td>
+        <td><strong>₹${parseFloat(b.totalAmount||0).toLocaleString('en-IN',{maximumFractionDigits:0})}</strong></td>
+        <td><span class="status-badge ${b.status}">${b.status}</span></td>
+        <td style="white-space:nowrap">
+          ${b.status!=='confirmed'?`<button class="action-btn confirm" onclick="updateStatus('${b.bookingId}','confirmed')">Confirm</button> `:''}
+          ${b.status!=='cancelled'?`<button class="action-btn cancel" onclick="updateStatus('${b.bookingId}','cancelled')">Cancel</button>`:''}
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function updateStatus(id, status) {
+    const bookings = getBookings();
+    const idx = bookings.findIndex(b => b.bookingId === id);
+    if(idx >= 0) {
+      bookings[idx].status = status;
+      // Re-sort by date
+      bookings.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+      saveBookings(bookings);
+      renderStats();
+      renderTable();
+    }
+  }
+
+  function clearAllBookings() {
+    if(confirm('Are you sure you want to delete ALL bookings? This cannot be undone.')) {
+      localStorage.removeItem('saharaBookings');
+      renderStats();
+      renderTable();
+    }
+  }
+
+  // ============================================================
+  // EXPORT CSV
+  // ============================================================
+  function exportCSV() {
+    const bookings = getBookings();
+    if(!bookings.length){ alert('No bookings to export.'); return; }
+
+    const headers = ['Booking ID','Guest Name','Email','Phone','Room Type','Occupancy','Check-In','Check-Out','Nights','Extra Persons','Total Amount','Status','Payment ID','Booked On'];
+    const rows = bookings.map(b => [
+      b.bookingId, b.guestName, b.guestEmail, b.guestPhone,
+      ROOM_NAMES[b.roomType]||b.roomType, OCC_NAMES[b.occupancy]||b.occupancy,
+      b.checkIn, b.checkOut, b.nights, b.extraPersons||0,
+      parseFloat(b.totalAmount||0).toFixed(2), b.status,
+      b.paymentId||'', b.createdAt
+    ].map(v => `"${String(v).replace(/"/g,'""')}"`));
+
+    const csv = [headers.join(','), ...rows.map(r=>r.join(','))].join('\n');
+    const blob = new Blob([csv], {type:'text/csv'});
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = `hotel-sahara-bookings-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // ============================================================
+  // UTILS
+  // ============================================================
+  function formatDate(ds) {
+    if(!ds) return '—';
+    const d = new Date(ds + 'T00:00:00');
+    return d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+  }
+
+  function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+</script>
+</body>
+</html>

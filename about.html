@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Hotel Sahara Pune</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <a href="index.html" class="navbar-logo">
+    <img src="images/logo-white.png" alt="Hotel Sahara" class="nav-logo-img">
+  </a>
+  <ul class="navbar-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rooms.html">Our Rooms</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="rooms.html" class="btn btn-gold btn-sm" style="margin-left:8px">Book Now</a></li>
+  </ul>
+  <div class="navbar-toggle" id="navToggle" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <h1>About Hotel Sahara</h1>
+  <div class="ornament"><span>✦</span></div>
+  <p>A tradition of warmth, comfort, and gracious hospitality in Pune</p>
+</section>
+
+<!-- ABOUT STORY -->
+<section class="section">
+  <div class="container">
+    <div class="about-story">
+      <div class="about-img-wrap fade-up">
+        <img src="images/exterior.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1551882547-ff40c4fe1fa7?w=800&q=80'"
+             alt="Hotel Sahara Building">
+        <div class="about-img-accent"></div>
+      </div>
+      <div class="about-text fade-up">
+        <h2>A Jewel in the Heart of Pune</h2>
+        <div class="ornament" style="justify-content:flex-start"><span>✦</span></div>
+        <p>Hotel Sahara has been welcoming guests to Pune for decades, building a reputation for genuine hospitality, well-appointed rooms, and attentive service. Situated on the prestigious Senapati Bapat Road, directly opposite the International Convention Centre, we are at the crossroads of Pune's business and cultural life.</p>
+        <p>Our promise is simple: to make every guest feel completely at home. Whether you are visiting Pune for a business conference, an academic event, or leisure travel, we ensure your stay is comfortable, enjoyable, and truly memorable.</p>
+        <p>At Hotel Sahara, you will find spacious, well-furnished rooms equipped with modern amenities, a restaurant offering delicious vegetarian cuisine, and a team ready to assist you around the clock.</p>
+        <a href="rooms.html" class="btn btn-gold" style="margin-top:12px">
+          <i class="fa fa-calendar-check"></i> Book a Room
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>Why Choose Hotel Sahara?</h2>
+      <div class="ornament"><span>✦</span></div>
+      <p>We go beyond a comfortable bed. Here's what makes Hotel Sahara your ideal Pune destination.</p>
+    </div>
+
+    <div class="why-us-grid">
+      <div class="why-card fade-up">
+        <div class="why-icon">📍</div>
+        <h4>Prime Location</h4>
+        <p>On Senapati Bapat Road, opposite the ICC. Close to IT parks, Pune University, NCL, hospitals, malls, and railway station.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">🏨</div>
+        <h4>Well-Furnished Rooms</h4>
+        <p>Spacious AC rooms with satellite TV, Wi-Fi, mini bar, study area, wardrobes, and all the comforts of home.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">🍽️</div>
+        <h4>Complimentary Breakfast</h4>
+        <p>Start every morning with a fresh buffet breakfast, included with every room booking at no extra charge.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">🔔</div>
+        <h4>24-Hour Room Service</h4>
+        <p>Our attentive staff is available round the clock to fulfil your needs — from meals to laundry to travel assistance.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">🌿</div>
+        <h4>Pure Vegetarian Cuisine</h4>
+        <p>Our in-house restaurant serves a wide variety of fresh vegetarian international and Indian cuisine, 11 AM to 11 PM daily.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">💳</div>
+        <h4>Easy Payments</h4>
+        <p>We accept all major credit &amp; debit cards, UPI, and net banking. Secure online booking with instant confirmation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION HIGHLIGHT -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>Perfectly Located in Pune</h2>
+      <div class="ornament"><span>✦</span></div>
+      <p style="color:rgba(255,255,255,0.7)">Hotel Sahara sits at the centre of everything that matters in Pune.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px">
+      <div style="text-align:center;padding:28px 16px;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg)" class="fade-up">
+        <div style="font-size:2rem;margin-bottom:12px">✈️</div>
+        <h4 style="color:var(--gold);font-size:1.4rem;font-family:var(--font-display)">10 km</h4>
+        <p style="color:rgba(255,255,255,0.65);font-size:0.88rem;margin-top:4px">Pune International Airport</p>
+      </div>
+      <div style="text-align:center;padding:28px 16px;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg)" class="fade-up">
+        <div style="font-size:2rem;margin-bottom:12px">🚂</div>
+        <h4 style="color:var(--gold);font-size:1.4rem;font-family:var(--font-display)">5 km</h4>
+        <p style="color:rgba(255,255,255,0.65);font-size:0.88rem;margin-top:4px">Pune Railway Station</p>
+      </div>
+      <div style="text-align:center;padding:28px 16px;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg)" class="fade-up">
+        <div style="font-size:2rem;margin-bottom:12px">🏛️</div>
+        <h4 style="color:var(--gold);font-size:1.4rem;font-family:var(--font-display)">Opposite</h4>
+        <p style="color:rgba(255,255,255,0.65);font-size:0.88rem;margin-top:4px">International Convention Centre</p>
+      </div>
+      <div style="text-align:center;padding:28px 16px;border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg)" class="fade-up">
+        <div style="font-size:2rem;margin-bottom:12px">🖥️</div>
+        <h4 style="color:var(--gold);font-size:1.4rem;font-family:var(--font-display)">Nearby</h4>
+        <p style="color:rgba(255,255,255,0.65);font-size:0.88rem;margin-top:4px">Hinjewadi IT Park, NCL, Pimpri Chinchwad</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a href="https://wa.me/919822393889" class="whatsapp-btn" target="_blank" rel="noopener">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="Hotel Sahara" style="height:52px;width:auto;margin-bottom:12px">
+        <p>Offering well-furnished, spacious, and comfortable accommodations in the heart of Pune.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Our Rooms</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Rooms</h4>
+        <ul class="footer-links">
+          <li><a href="rooms.html?room=executive">Executive AC — Single</a></li>
+          <li><a href="rooms.html?room=executive">Executive AC — Double</a></li>
+          <li><a href="rooms.html?room=deluxe">Deluxe AC — Single</a></li>
+          <li><a href="rooms.html?room=deluxe">Deluxe AC — Double</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <ul class="footer-contact">
+          <li><span class="fc-icon"><i class="fa fa-map-marker-alt"></i></span><span>Opp. ICC, Senapati Bapat Road, Pune 411 016</span></li>
+          <li><span class="fc-icon"><i class="fa fa-phone"></i></span><span><a href="tel:02025655405">020-2565 5405/6/8/9</a></span></li>
+          <li><span class="fc-icon"><i class="fa fa-envelope"></i></span><span><a href="mailto:bookingsahara@rediffmail.com">bookingsahara@rediffmail.com</a></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hotel Sahara, Pune. All rights reserved.</span>
+      <a href="admin.html" style="color:rgba(255,255,255,0.3);font-size:0.75rem">Staff Login</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Sahara — A Jewel of a Hotel | Pune</title>
+  <meta name="description" content="Hotel Sahara, Pune — Elegant AC rooms on Senapati Bapat Road. Complimentary buffet breakfast, vegetarian restaurant, 24hr room service. Book direct for best rates.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="navbar-logo">
+    <img src="images/logo-white.png" alt="Hotel Sahara" class="nav-logo-img">
+  </a>
+  <ul class="navbar-links" id="navLinks">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="rooms.html">Our Rooms</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="rooms.html" class="btn btn-gold btn-sm" style="margin-left:8px">Book Now</a></li>
+  </ul>
+  <div class="navbar-toggle" id="navToggle" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Welcome to Hotel Sahara, Pune</div>
+    <h1 class="hero-title">Hotel <strong>Sahara</strong></h1>
+    <p class="hero-tagline">— A Jewel of a Hotel —</p>
+
+    <!-- Quick Availability Checker -->
+    <div class="hero-booking">
+      <div class="booking-field">
+        <label><i class="fa fa-calendar"></i> Check-In</label>
+        <input type="date" id="heroCheckin" placeholder="Check-In">
+      </div>
+      <div class="booking-field">
+        <label><i class="fa fa-calendar"></i> Check-Out</label>
+        <input type="date" id="heroCheckout" placeholder="Check-Out">
+      </div>
+      <div class="booking-field">
+        <label><i class="fa fa-bed"></i> Room Type</label>
+        <select id="heroRoomType">
+          <option value="">Select Room</option>
+          <option value="executive">Executive AC</option>
+          <option value="deluxe">Deluxe AC</option>
+        </select>
+      </div>
+      <button class="btn btn-gold" onclick="checkAvailability()">
+        <i class="fa fa-search"></i> Check Availability
+      </button>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stat-item">
+      <div class="stat-number">35+</div>
+      <div class="stat-label">Years of Hospitality</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">AC</div>
+      <div class="stat-label">All Rooms Air Conditioned</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">10km</div>
+      <div class="stat-label">From Airport</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5km</div>
+      <div class="stat-label">From Railway Station</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">Room Service</div>
+    </div>
+  </div>
+</div>
+
+<!-- ROOMS SECTION -->
+<section class="section" id="rooms">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>Our Accommodations</h2>
+      <div class="ornament"><span>✦</span></div>
+      <p>Spacious, well-furnished air-conditioned rooms designed for your comfort — whether travelling solo or with family.</p>
+    </div>
+
+    <div class="rooms-grid">
+      <!-- Executive AC Room -->
+      <div class="room-card fade-up">
+        <div class="room-card-img">
+          <img src="images/room-executive.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80'"
+               alt="Executive AC Room" loading="lazy">
+          <span class="room-badge">Executive AC</span>
+        </div>
+        <div class="room-card-body">
+          <h3>Executive AC Room</h3>
+          <p>A refined retreat with premium furnishings, satellite TV, and all essential business amenities for a productive stay.</p>
+          <div class="room-features">
+            <span class="feature-tag"><i class="fa fa-snowflake"></i> Air Conditioned</span>
+            <span class="feature-tag"><i class="fa fa-tv"></i> Satellite TV</span>
+            <span class="feature-tag"><i class="fa fa-wifi"></i> Free Wi-Fi</span>
+            <span class="feature-tag"><i class="fa fa-wine-bottle"></i> Mini Bar</span>
+          </div>
+          <div class="room-card-footer">
+            <div>
+              <div class="price-from">From</div>
+              <div class="price-amount">₹2,300</div>
+              <div class="price-night">per night + GST</div>
+            </div>
+            <a href="rooms.html?room=executive" class="btn btn-navy btn-sm">View &amp; Book</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deluxe AC Room -->
+      <div class="room-card fade-up">
+        <div class="room-card-img">
+          <img src="images/room-deluxe.jpg"
+               onerror="this.src='https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80'"
+               alt="Deluxe AC Room" loading="lazy">
+          <span class="room-badge">Deluxe AC</span>
+        </div>
+        <div class="room-card-body">
+          <h3>Deluxe AC Room</h3>
+          <p>Enhanced space and comfort with premium décor, a plush king bed, sofa seating, and a dedicated work area for extended stays.</p>
+          <div class="room-features">
+            <span class="feature-tag"><i class="fa fa-snowflake"></i> Air Conditioned</span>
+            <span class="feature-tag"><i class="fa fa-tv"></i> Satellite TV</span>
+            <span class="feature-tag"><i class="fa fa-wifi"></i> Free Wi-Fi</span>
+            <span class="feature-tag"><i class="fa fa-couch"></i> Sofa &amp; Study Area</span>
+          </div>
+          <div class="room-card-footer">
+            <div>
+              <div class="price-from">From</div>
+              <div class="price-amount">₹2,500</div>
+              <div class="price-night">per night + GST</div>
+            </div>
+            <a href="rooms.html?room=deluxe" class="btn btn-navy btn-sm">View &amp; Book</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px" class="fade-up">
+      <p style="margin-bottom:16px;font-size:0.9rem">
+        <i class="fa fa-utensils text-gold"></i>&nbsp; Complimentary buffet breakfast included with every booking &nbsp;·&nbsp;
+        <i class="fa fa-user-plus text-gold"></i>&nbsp; Extra person @ ₹600/night
+      </p>
+      <a href="rooms.html" class="btn btn-outline-navy">See All Room Details</a>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES SECTION -->
+<section class="section section-alt" id="amenities">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>Facilities &amp; Services</h2>
+      <div class="ornament"><span>✦</span></div>
+      <p>Everything you need for a comfortable, productive, and memorable stay in Pune.</p>
+    </div>
+
+    <div class="amenities-grid">
+      <div class="amenity-item fade-up">
+        <div class="amenity-icon">📶</div>
+        <h4>Free Wi-Fi</h4>
+      </div>
+      <div class="amenity-item fade-up">
+        <div class="amenity-icon">📺</div>
+        <h4>Satellite TV</h4>
+      </div>
+      <div class="amenity-item fade-up">
+        <div class="amenity-icon">🍽️</div>
+        <h4>Buffet Breakfast</h4>
+      </div>
+      <div class="amenity-item fade-up">
+        <div class="amenity-icon">🔔</div>
+        <h4>24hr Room Service</h4>
+      </div>
+      <div class="amenity-item fade-up">
+        <div class="amenity-icon">🧊</div>
+        <h4>Mini Bar</h4>
+      </div>
+      <div class="amenity-item fade-up">
+        <div class="amenity-icon">📚</div>
+        <h4>Study Area</h4>
+      </div>
+      <div class="amenity-item fade-up">
+        <div class="amenity-icon">🏦</div>
+        <h4>Bank Facilities</h4>
+      </div>
+      <div class="amenity-item fade-up">
+        <div class="amenity-icon">🚗</div>
+        <h4>Car Rental</h4>
+      </div>
+      <div class="amenity-item fade-up">
+        <div class="amenity-icon">👕</div>
+        <h4>Laundry Service</h4>
+      </div>
+      <div class="amenity-item fade-up">
+        <div class="amenity-icon">✈️</div>
+        <h4>Travel Assistance</h4>
+      </div>
+      <div class="amenity-item fade-up">
+        <div class="amenity-icon">🩺</div>
+        <h4>Doctor on Request</h4>
+      </div>
+      <div class="amenity-item fade-up">
+        <div class="amenity-icon">📞</div>
+        <h4>ISD / STO Phone</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUISINE SECTION -->
+<section class="section section-dark" id="cuisine">
+  <div class="container">
+    <div class="cuisine-content">
+      <div class="cuisine-img fade-up">
+        <img src="images/restaurant.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80'"
+             alt="Hotel Sahara Restaurant" loading="lazy">
+      </div>
+      <div class="cuisine-text fade-up">
+        <p class="hero-eyebrow" style="background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);padding:6px 18px;border-radius:2px;display:inline-block;font-size:0.72rem;letter-spacing:4px">Our Restaurant</p>
+        <h2>Pure Vegetarian Cuisine</h2>
+        <div class="ornament"><span>✦</span></div>
+        <p>Savour a rich selection of vegetarian international cuisine and snacks at our in-house restaurant. From hearty Indian meals to continental delights — all crafted fresh for every guest.</p>
+        <p>Every morning begins with a complimentary buffet breakfast, setting the perfect tone for your day in Pune.</p>
+        <div class="cuisine-hours">
+          <i class="fa fa-clock"></i>
+          <span>Restaurant Open: 11:00 AM – 11:00 PM Daily</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION SECTION -->
+<section class="section" id="location">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>Prime Pune Location</h2>
+      <div class="ornament"><span>✦</span></div>
+      <p>Strategically situated on prestigious Senapati Bapat Road — at the heart of Pune's business and cultural life.</p>
+    </div>
+
+    <div class="location-highlights">
+      <div class="location-item fade-up">
+        <div class="loc-icon">✈️</div>
+        <h4>10 km</h4>
+        <p>Pune International Airport</p>
+      </div>
+      <div class="location-item fade-up">
+        <div class="loc-icon">🚂</div>
+        <h4>5 km</h4>
+        <p>Pune Railway Station</p>
+      </div>
+      <div class="location-item fade-up">
+        <div class="loc-icon">🏛️</div>
+        <h4>Opposite</h4>
+        <p>International Convention Centre</p>
+      </div>
+      <div class="location-item fade-up">
+        <div class="loc-icon">🖥️</div>
+        <h4>Nearby</h4>
+        <p>Hinjewadi IT Park &amp; NCL</p>
+      </div>
+      <div class="location-item fade-up">
+        <div class="loc-icon">🎓</div>
+        <h4>Close to</h4>
+        <p>Pune University &amp; Symbiosis</p>
+      </div>
+      <div class="location-item fade-up">
+        <div class="loc-icon">🛍️</div>
+        <h4>Near</h4>
+        <p>Malls &amp; Shopping Areas</p>
+      </div>
+    </div>
+
+    <div class="map-box fade-up">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.4!2d73.8278335!3d18.5370202!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf7780fd4859%3A0x2320984717a090e8!2sHotel%20Sahara%20Pune!5e0!3m2!1sen!2sin!4v1717000000000!5m2!1sen!2sin"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Hotel Sahara Location">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="Hotel Sahara" style="height:52px;width:auto;margin-bottom:12px">
+        <p>Offering well-furnished, spacious, and comfortable accommodations in the heart of Pune since decades. Your home away from home.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Our Rooms</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Rooms</h4>
+        <ul class="footer-links">
+          <li><a href="rooms.html?room=executive">Executive AC — Single</a></li>
+          <li><a href="rooms.html?room=executive">Executive AC — Double</a></li>
+          <li><a href="rooms.html?room=deluxe">Deluxe AC — Single</a></li>
+          <li><a href="rooms.html?room=deluxe">Deluxe AC — Double</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Us</h4>
+        <ul class="footer-contact">
+          <li>
+            <span class="fc-icon"><i class="fa fa-map-marker-alt"></i></span>
+            <span>Opp. International Convention Centre, Near Chaturshringi Temple, Senapati Bapat Road, Pune 411 016</span>
+          </li>
+          <li>
+            <span class="fc-icon"><i class="fa fa-phone"></i></span>
+            <span><a href="tel:02025655405">020-2565 5405/6/8/9</a></span>
+          </li>
+          <li>
+            <span class="fc-icon"><i class="fa fa-envelope"></i></span>
+            <span><a href="mailto:bookingsahara@rediffmail.com">bookingsahara@rediffmail.com</a></span>
+          </li>
+          <li>
+            <span class="fc-icon"><i class="fab fa-whatsapp"></i></span>
+            <span><a href="https://wa.me/919822393889" target="_blank">+91 98223 93889</a></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hotel Sahara, Pune. All rights reserved.</span>
+      <span>
+        <a href="admin.html" style="color:rgba(255,255,255,0.3);font-size:0.75rem">Staff Login</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/919822393889?text=Hello%2C%20I%27d%20like%20to%20enquire%20about%20room%20availability%20at%20Hotel%20Sahara." 
+   class="whatsapp-btn" target="_blank" rel="noopener" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  // Hero booking widget — Flatpickr calendars
+  const heroCheckinPicker = flatpickr("#heroCheckin", {
+    minDate:    "today",
+    dateFormat: "Y-m-d",
+    altInput:   true,
+    altFormat:  "d M Y",
+    disableMobile: true,
+    placeholder: "Check-In Date",
+    onChange: function(selectedDates) {
+      if(selectedDates[0]) {
+        const next = new Date(selectedDates[0].getTime() + 86400000);
+        heroCheckoutPicker.set('minDate', next);
+        if(heroCheckoutPicker.selectedDates[0] && heroCheckoutPicker.selectedDates[0] <= selectedDates[0]){
+          heroCheckoutPicker.setDate(next);
+        }
+      }
+    }
+  });
+
+  const heroCheckoutPicker = flatpickr("#heroCheckout", {
+    minDate:    new Date(new Date().getTime() + 86400000),
+    dateFormat: "Y-m-d",
+    altInput:   true,
+    altFormat:  "d M Y",
+    disableMobile: true,
+    placeholder: "Check-Out Date",
+  });
+
+  function checkAvailability(){
+    const checkin  = document.getElementById('heroCheckin').value;
+    const checkout = document.getElementById('heroCheckout').value;
+    const room     = document.getElementById('heroRoomType').value;
+
+    if(!checkin || !checkout){
+      showToast('Please select check-in and check-out dates.','error');
+      return;
+    }
+    if(checkout <= checkin){
+      showToast('Check-out must be after check-in.','error');
+      return;
+    }
+    let url = `rooms.html?checkin=${checkin}&checkout=${checkout}`;
+    if(room) url += `&room=${room}`;
+    window.location.href = url;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — Hotel Sahara Pune</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <a href="index.html" class="navbar-logo">
+    <img src="images/logo-white.png" alt="Hotel Sahara" class="nav-logo-img">
+  </a>
+  <ul class="navbar-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rooms.html">Our Rooms</a></li>
+    <li><a href="gallery.html" class="active">Gallery</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="rooms.html" class="btn btn-gold btn-sm" style="margin-left:8px">Book Now</a></li>
+  </ul>
+  <div class="navbar-toggle" id="navToggle" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <h1>Photo Gallery</h1>
+  <div class="ornament"><span>✦</span></div>
+  <p>A glimpse into the elegance and warmth of Hotel Sahara</p>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <!-- Filter Buttons -->
+    <div class="gallery-filter">
+      <button class="filter-btn btn-navy active" onclick="filterGallery('all',this)">All Photos</button>
+      <button class="filter-btn btn-outline-navy" onclick="filterGallery('exterior',this)">Exterior</button>
+      <button class="filter-btn btn-outline-navy" onclick="filterGallery('lobby',this)">Lobby &amp; Common</button>
+      <button class="filter-btn btn-outline-navy" onclick="filterGallery('rooms',this)">Rooms</button>
+      <button class="filter-btn btn-outline-navy" onclick="filterGallery('bathroom',this)">Bathrooms</button>
+      <button class="filter-btn btn-outline-navy" onclick="filterGallery('dining',this)">Dining</button>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid" id="galleryGrid">
+
+      <!-- Each gallery-item: replace src with real image paths. data-category for filtering. -->
+
+      <!-- Exterior -->
+      <div class="gallery-item" data-category="exterior" data-index="0" onclick="openLightbox(0)">
+        <img src="images/exterior.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&q=80'"
+             alt="Hotel Sahara Exterior">
+        <div class="gallery-overlay"><i class="fa fa-expand"></i></div>
+      </div>
+
+      <!-- Lobby -->
+      <div class="gallery-item" data-category="lobby" data-index="1" onclick="openLightbox(1)">
+        <img src="images/reception.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1582719508461-905c673771fd?w=700&q=80'"
+             alt="Reception Area">
+        <div class="gallery-overlay"><i class="fa fa-expand"></i></div>
+      </div>
+
+      <!-- Room 1 - Executive -->
+      <div class="gallery-item" data-category="rooms" data-index="2" onclick="openLightbox(2)">
+        <img src="images/room-executive.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80'"
+             alt="Executive AC Room">
+        <div class="gallery-overlay"><i class="fa fa-expand"></i></div>
+        <span class="room-gallery-badge executive">Executive AC</span>
+      </div>
+
+      <!-- Corridor -->
+      <div class="gallery-item" data-category="lobby" data-index="3" onclick="openLightbox(3)">
+        <img src="images/corridor.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80'"
+             alt="Hotel Corridor">
+        <div class="gallery-overlay"><i class="fa fa-expand"></i></div>
+      </div>
+
+      <!-- Deluxe Room -->
+      <div class="gallery-item" data-category="rooms" data-index="4" onclick="openLightbox(4)">
+        <img src="images/room-deluxe.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=700&q=80'"
+             alt="Deluxe AC Room">
+        <div class="gallery-overlay"><i class="fa fa-expand"></i></div>
+        <span class="room-gallery-badge deluxe">Deluxe AC</span>
+      </div>
+
+      <!-- Bathroom -->
+      <div class="gallery-item" data-category="bathroom" data-index="5" onclick="openLightbox(5)">
+        <img src="images/bathroom.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=700&q=80'"
+             alt="Bathroom">
+        <div class="gallery-overlay"><i class="fa fa-expand"></i></div>
+      </div>
+
+      <!-- Room amenities - Deluxe -->
+      <div class="gallery-item" data-category="rooms" data-index="6" onclick="openLightbox(6)">
+        <img src="images/room-amenities.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1590490360182-c33d57733427?w=700&q=80'"
+             alt="Deluxe Room Amenities">
+        <div class="gallery-overlay"><i class="fa fa-expand"></i></div>
+        <span class="room-gallery-badge deluxe">Deluxe AC</span>
+      </div>
+
+      <!-- Dining -->
+      <div class="gallery-item" data-category="dining" data-index="7" onclick="openLightbox(7)">
+        <img src="images/restaurant.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80'"
+             alt="Restaurant">
+        <div class="gallery-overlay"><i class="fa fa-expand"></i></div>
+      </div>
+
+      <!-- Lounge -->
+      <div class="gallery-item" data-category="lobby" data-index="8" onclick="openLightbox(8)">
+        <img src="images/lounge.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=80'"
+             alt="Lobby Lounge">
+        <div class="gallery-overlay"><i class="fa fa-expand"></i></div>
+      </div>
+
+      <!-- Executive Room -->
+      <div class="gallery-item" data-category="rooms" data-index="9" onclick="openLightbox(9)">
+        <img src="images/room-single.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1560185127-6a207d0218f6?w=700&q=80'"
+             alt="Executive AC Room">
+        <div class="gallery-overlay"><i class="fa fa-expand"></i></div>
+        <span class="room-gallery-badge executive">Executive AC</span>
+      </div>
+
+      <!-- Executive room extra view -->
+      <div class="gallery-item" data-category="rooms" data-index="10" onclick="openLightbox(10)">
+        <img src="images/room-executive-3.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80'"
+             alt="Executive AC Room">
+        <div class="gallery-overlay"><i class="fa fa-expand"></i></div>
+        <span class="room-gallery-badge executive">Executive AC</span>
+      </div>
+
+      <!-- Room wardrobe - Deluxe -->
+      <div class="gallery-item" data-category="rooms" data-index="11" onclick="openLightbox(11)">
+        <img src="images/room-wardrobe.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=700&q=80'"
+             alt="Deluxe Room Wardrobe">
+        <div class="gallery-overlay"><i class="fa fa-expand"></i></div>
+        <span class="room-gallery-badge deluxe">Deluxe AC</span>
+      </div>
+
+    </div><!-- /.gallery-grid -->
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-close" onclick="closeLightbox()"><i class="fa fa-times"></i></div>
+  <div class="lightbox-prev" onclick="lightboxNav(-1)"><i class="fa fa-chevron-left"></i></div>
+  <img src="" alt="" class="lightbox-img" id="lightboxImg">
+  <div class="lightbox-next" onclick="lightboxNav(1)"><i class="fa fa-chevron-right"></i></div>
+</div>
+
+<a href="https://wa.me/919822393889" class="whatsapp-btn" target="_blank" rel="noopener">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script src="js/main.js"></script>
+<script>
+  let currentIndex = 0;
+  let visibleItems = [];
+
+  function filterGallery(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.className = 'filter-btn btn-outline-navy';
+    });
+    btn.className = 'filter-btn btn-navy active';
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      if(cat === 'all' || item.dataset.category === cat) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+    visibleItems = [...document.querySelectorAll('.gallery-item:not(.hidden)')];
+  }
+
+  function openLightbox(index) {
+    visibleItems = [...document.querySelectorAll('.gallery-item:not(.hidden)')];
+    currentIndex = visibleItems.findIndex(item => parseInt(item.dataset.index) === index);
+    if(currentIndex < 0) currentIndex = 0;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function lightboxNav(dir) {
+    currentIndex = (currentIndex + dir + visibleItems.length) % visibleItems.length;
+    updateLightbox();
+  }
+
+  function updateLightbox() {
+    const item = visibleItems[currentIndex];
+    const img  = item.querySelector('img');
+    document.getElementById('lightboxImg').src = img.src;
+    document.getElementById('lightboxImg').alt = img.alt;
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if(!document.getElementById('lightbox').classList.contains('open')) return;
+    if(e.key === 'ArrowRight') lightboxNav(1);
+    if(e.key === 'ArrowLeft')  lightboxNav(-1);
+    if(e.key === 'Escape') closeLightbox();
+  });
+
+  // Init visible items
+  visibleItems = [...document.querySelectorAll('.gallery-item')];
+</script>
+</body>
+</html>
