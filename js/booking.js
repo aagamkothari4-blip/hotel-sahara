@@ -7,10 +7,12 @@
 // CONFIGURATION — Fill these in before going live
 // ============================================================
 const CONFIG = {
-  razorpayKeyId:    'YOUR_RAZORPAY_KEY_ID',     // e.g. rzp_live_xxxxxxxxxxxxxx
-  emailjsServiceId: 'YOUR_EMAILJS_SERVICE_ID',  // e.g. service_xxxxxxx
-  emailjsTemplateId:'YOUR_EMAILJS_TEMPLATE_ID', // e.g. template_xxxxxxx
-  emailjsPublicKey: 'YOUR_EMAILJS_PUBLIC_KEY',  // e.g. XXXXXXXXXXXXXXXXXXXX
+  razorpayKeyId:    'YOUR_RAZORPAY_KEY_ID',
+  emailjsServiceId: 'YOUR_EMAILJS_SERVICE_ID',
+  emailjsTemplateId:'YOUR_EMAILJS_TEMPLATE_ID',
+  emailjsPublicKey: 'YOUR_EMAILJS_PUBLIC_KEY',
+  // Paste your Google Apps Script Web App URL here after deploying
+  googleScriptUrl:  'YOUR_GOOGLE_APPS_SCRIPT_URL',
   hotelName:        'Hotel Sahara',
   hotelPhone:       '020-25655405/6/8/9',
   hotelEmail:       'bookingsahara@rediffmail.com',
@@ -346,13 +348,59 @@ function simulateDemoPayment(bookingData){
 }
 
 // ============================================================
-// SAVE BOOKING TO LOCALSTORAGE
+// SAVE BOOKING TO LOCALSTORAGE + GOOGLE SHEETS
 // ============================================================
 function saveBooking(booking){
+  // 1. Always save locally (fallback)
   const bookings = JSON.parse(localStorage.getItem('saharaBookings') || '[]');
   bookings.unshift(booking);
   localStorage.setItem('saharaBookings', JSON.stringify(bookings));
+
+  // 2. Send to Google Sheets (primary backend)
+  sendToGoogleSheets(booking);
+
   console.log('Booking saved:', booking.bookingId);
+}
+
+// ============================================================
+// SEND TO GOOGLE SHEETS
+// ============================================================
+function sendToGoogleSheets(booking) {
+  if (!CONFIG.googleScriptUrl || CONFIG.googleScriptUrl === 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
+    console.warn('⚠️  Google Sheets URL not configured. Booking saved locally only.');
+    return;
+  }
+
+  const payload = {
+    bookingId:    booking.bookingId,
+    guestName:    booking.guestName,
+    guestPhone:   booking.guestPhone,
+    guestEmail:   booking.guestEmail,
+    roomType:     booking.roomType,
+    occupancy:    booking.occupancy,
+    checkIn:      booking.checkIn,
+    checkOut:     booking.checkOut,
+    nights:       booking.nights,
+    extraPersons: booking.extraPersons || 0,
+    baseRate:     booking.baseRate,
+    roomTotal:    booking.roomTotal,
+    gst:          booking.gst,
+    totalAmount:  booking.totalAmount,
+    paymentId:    booking.paymentId,
+    requests:     booking.requests || '',
+  };
+
+  // Use no-cors mode — Google Apps Script handles CORS
+  fetch(CONFIG.googleScriptUrl, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(payload),
+  }).then(() => {
+    console.log('✅ Booking sent to Google Sheets');
+  }).catch(err => {
+    console.error('⚠️  Google Sheets sync failed (booking still saved locally):', err);
+  });
 }
 
 // ============================================================
