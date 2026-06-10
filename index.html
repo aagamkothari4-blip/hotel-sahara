@@ -20,6 +20,7 @@
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="rooms.html">Our Rooms</a></li>
     <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="things-to-do.html">Explore Pune</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="rooms.html" class="btn btn-gold btn-sm" style="margin-left:8px">Book Now</a></li>
@@ -59,6 +60,12 @@
       <button class="btn btn-gold" onclick="checkAvailability()">
         <i class="fa fa-search"></i> Check Availability
       </button>
+    </div>
+
+    <!-- Tentative Pricing Preview -->
+    <div class="hero-price-preview" id="heroPricePreview">
+      <div id="heroPriceText"></div>
+      <div class="price-note">Starting price · Single occupancy · Excl. GST · Incl. complimentary breakfast</div>
     </div>
   </div>
 
@@ -323,6 +330,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="rooms.html">Our Rooms</a></li>
           <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="things-to-do.html">Explore Pune</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -376,47 +384,66 @@
 <script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
+  const RATES = { executive: 2300, deluxe: 2500 };
+
+  function updateHeroPricing() {
+    const checkin  = document.getElementById('heroCheckin').value;
+    const checkout = document.getElementById('heroCheckout').value;
+    const roomType = document.getElementById('heroRoomType').value;
+    const preview  = document.getElementById('heroPricePreview');
+    const text     = document.getElementById('heroPriceText');
+
+    if (!checkin || !checkout || checkout <= checkin) {
+      preview.classList.remove('show'); return;
+    }
+    const nights = Math.ceil((new Date(checkout) - new Date(checkin)) / 86400000);
+    if (nights < 1) { preview.classList.remove('show'); return; }
+
+    let html = '';
+    if (roomType === 'executive') {
+      const total = RATES.executive * nights;
+      html = `Executive AC — <strong>₹${total.toLocaleString('en-IN')}</strong> for ${nights} night${nights>1?'s':''}`;
+    } else if (roomType === 'deluxe') {
+      const total = RATES.deluxe * nights;
+      html = `Deluxe AC — <strong>₹${total.toLocaleString('en-IN')}</strong> for ${nights} night${nights>1?'s':''}`;
+    } else {
+      const exec  = RATES.executive * nights;
+      const delux = RATES.deluxe * nights;
+      html = `Executive AC from <strong>₹${exec.toLocaleString('en-IN')}</strong> &nbsp;·&nbsp; Deluxe AC from <strong>₹${delux.toLocaleString('en-IN')}</strong> &nbsp;— ${nights} night${nights>1?'s':''}`;
+    }
+    text.innerHTML = html;
+    preview.classList.add('show');
+  }
+
   // Hero booking widget — Flatpickr calendars
   const heroCheckinPicker = flatpickr("#heroCheckin", {
-    minDate:    "today",
-    dateFormat: "Y-m-d",
-    altInput:   true,
-    altFormat:  "d M Y",
-    disableMobile: true,
-    placeholder: "Check-In Date",
+    minDate: "today", dateFormat: "Y-m-d",
+    altInput: true, altFormat: "d M Y", disableMobile: true,
     onChange: function(selectedDates) {
       if(selectedDates[0]) {
         const next = new Date(selectedDates[0].getTime() + 86400000);
         heroCheckoutPicker.set('minDate', next);
-        if(heroCheckoutPicker.selectedDates[0] && heroCheckoutPicker.selectedDates[0] <= selectedDates[0]){
+        if(heroCheckoutPicker.selectedDates[0] && heroCheckoutPicker.selectedDates[0] <= selectedDates[0])
           heroCheckoutPicker.setDate(next);
-        }
       }
+      updateHeroPricing();
     }
   });
 
   const heroCheckoutPicker = flatpickr("#heroCheckout", {
-    minDate:    new Date(new Date().getTime() + 86400000),
-    dateFormat: "Y-m-d",
-    altInput:   true,
-    altFormat:  "d M Y",
-    disableMobile: true,
-    placeholder: "Check-Out Date",
+    minDate: new Date(new Date().getTime() + 86400000),
+    dateFormat: "Y-m-d", altInput: true, altFormat: "d M Y", disableMobile: true,
+    onChange: function() { updateHeroPricing(); }
   });
+
+  document.getElementById('heroRoomType').addEventListener('change', updateHeroPricing);
 
   function checkAvailability(){
     const checkin  = document.getElementById('heroCheckin').value;
     const checkout = document.getElementById('heroCheckout').value;
     const room     = document.getElementById('heroRoomType').value;
-
-    if(!checkin || !checkout){
-      showToast('Please select check-in and check-out dates.','error');
-      return;
-    }
-    if(checkout <= checkin){
-      showToast('Check-out must be after check-in.','error');
-      return;
-    }
+    if(!checkin || !checkout){ showToast('Please select check-in and check-out dates.','error'); return; }
+    if(checkout <= checkin){ showToast('Check-out must be after check-in.','error'); return; }
     let url = `rooms.html?checkin=${checkin}&checkout=${checkout}`;
     if(room) url += `&room=${room}`;
     window.location.href = url;

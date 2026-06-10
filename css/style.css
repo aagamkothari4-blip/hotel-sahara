@@ -587,3 +587,29 @@ span.flatpickr-weekday{background:var(--navy) !important;color:rgba(255,255,255,
 /* Style the alt (display) input */
 .flatpickr-input[readonly]{cursor:pointer}
 .flatpickr-input.active,.flatpickr-input[readonly]:focus{outline:none;border-color:var(--gold) !important;box-shadow:0 0 0 3px rgba(201,168,76,0.1)}
+
+/* ============================================================
+   HERO PRICING PREVIEW + IMPROVED PRICING STYLES
+   ============================================================ */
+.hero-price-preview{
+  margin-top:14px;display:none;
+  background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.35);
+  border-radius:var(--radius);padding:12px 24px;color:var(--white);
+  font-size:0.88rem;text-align:center;letter-spacing:0.3px;animation:fade-in 0.4s ease;
+  max-width:960px;margin-left:auto;margin-right:auto;
+}
+.hero-price-preview.show{display:block}
+.hero-price-preview strong{color:var(--gold-light);font-size:1.05rem}
+.hero-price-preview .price-note{font-size:0.74rem;color:rgba(255,255,255,0.5);margin-top:3px}
+
+/* Bigger, bolder room card price */
+.price-amount{font-family:var(--font-display);font-size:2.6rem;color:var(--navy);font-weight:700;line-height:1}
+.price-from{font-size:0.7rem;color:var(--gray);text-transform:uppercase;letter-spacing:1px}
+.price-night{font-size:0.82rem;color:var(--gray);font-weight:500}
+
+/* Room detail page pricing */
+.pricing-row .price-tag{font-family:var(--font-display);font-size:1.7rem;color:var(--navy);font-weight:700}
+
+/* Booking modal footer total */
+#footerTotal{font-family:var(--font-display) !important;font-size:2.4rem !important;color:var(--gold) !important;font-weight:700 !important;line-height:1}
+.breakdown-row.total-row{border-top:2px solid var(--navy) !important;padding-top:14px !important;font-size:1rem !important}
