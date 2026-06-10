@@ -20,7 +20,7 @@
     <li><a href="index.html" class="active">Home</a></li>
     <li><a href="rooms.html">Our Rooms</a></li>
     <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="things-to-do.html">Explore Pune</a></li>
+    <li><a href="explore.html">Explore Pune</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="rooms.html" class="btn btn-gold btn-sm" style="margin-left:8px">Book Now</a></li>
@@ -60,6 +60,18 @@
       <button class="btn btn-gold" onclick="checkAvailability()">
         <i class="fa fa-search"></i> Check Availability
       </button>
+    </div>
+
+    <!-- Live price preview -->
+    <div id="heroPricePreview" style="display:none;margin-top:14px;animation:fade-in 0.4s ease">
+      <div style="background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);border-radius:var(--radius);padding:12px 24px;display:inline-flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center">
+        <span style="color:rgba(255,255,255,0.8);font-size:0.82rem;letter-spacing:1px" id="previewRoomLabel">—</span>
+        <span style="color:rgba(255,255,255,0.5);font-size:0.8rem">|</span>
+        <span style="color:rgba(255,255,255,0.8);font-size:0.82rem" id="previewNights">—</span>
+        <span style="color:rgba(255,255,255,0.5);font-size:0.8rem">|</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--gold-light)" id="previewPrice">—</span>
+        <span style="color:rgba(255,255,255,0.55);font-size:0.75rem">+ GST</span>
+      </div>
     </div>
 
     <!-- Tentative Pricing Preview -->
@@ -330,7 +342,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="rooms.html">Our Rooms</a></li>
           <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="things-to-do.html">Explore Pune</a></li>
+          <li><a href="explore.html">Explore Pune</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Pune — Hotel Sahara</title>
+  <meta name="description" content="Discover the best things to do in Pune near Hotel Sahara — heritage sites, nature, shopping, dining and more on Senapati Bapat Road.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .explore-filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:44px}
+    .explore-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px}
+    .explore-card{
+      background:var(--white);border-radius:var(--radius-lg);overflow:hidden;
+      box-shadow:var(--shadow);transition:var(--transition);border:1px solid var(--border);
+    }
+    .explore-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+    .explore-card-img{height:200px;overflow:hidden;position:relative}
+    .explore-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
+    .explore-card:hover .explore-card-img img{transform:scale(1.06)}
+    .explore-card-cat{
+      position:absolute;top:14px;left:14px;
+      font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;
+      font-weight:600;padding:4px 12px;border-radius:2px;
+    }
+    .cat-heritage{background:var(--navy);color:var(--white)}
+    .cat-nature{background:#166534;color:var(--white)}
+    .cat-shopping{background:#9333ea;color:var(--white)}
+    .cat-dining{background:#b45309;color:var(--white)}
+    .cat-sports{background:#0369a1;color:var(--white)}
+    .cat-family{background:#be185d;color:var(--white)}
+    .explore-card-body{padding:22px}
+    .explore-card-body h3{color:var(--navy);font-size:1.2rem;margin-bottom:6px}
+    .explore-card-body p{font-size:0.88rem;line-height:1.65;margin-bottom:16px}
+    .explore-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:0.78rem;color:var(--gray)}
+    .explore-meta span{display:flex;align-items:center;gap:5px}
+    .explore-meta .text-gold{color:var(--gold)}
+    .explore-tips{
+      background:var(--gold-pale);border-left:4px solid var(--gold);
+      border-radius:0 var(--radius-lg) var(--radius-lg) 0;
+      padding:24px 28px;margin-bottom:60px;
+    }
+    .explore-tips h3{color:var(--navy);margin-bottom:12px;font-size:1.3rem}
+    .explore-tips ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;list-style:none}
+    .explore-tips li{font-size:0.88rem;display:flex;gap:8px;align-items:flex-start}
+    .explore-tips li::before{content:'✦';color:var(--gold);font-size:0.7rem;margin-top:3px;flex-shrink:0}
+    .section-intro{max-width:700px;margin:0 auto 48px;text-align:center;font-size:1.05rem;color:var(--gray)}
+  </style>
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar">
+  <a href="index.html" class="navbar-logo">
+    <img src="images/logo-white.png" alt="Hotel Sahara" class="nav-logo-img">
+  </a>
+  <ul class="navbar-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rooms.html">Our Rooms</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="explore.html" class="active">Explore Pune</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="rooms.html" class="btn btn-gold btn-sm" style="margin-left:8px">Book Now</a></li>
+  </ul>
+  <div class="navbar-toggle" id="navToggle" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <h1>Explore Pune</h1>
+  <div class="ornament"><span>✦</span></div>
+  <p>Discover the best of Pune — all within easy reach of Hotel Sahara</p>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <p class="section-intro">
+      Hotel Sahara's prime location on Senapati Bapat Road puts you at the centre of Pune. From centuries-old forts to buzzing café districts, here's what to explore during your stay.
+    </p>
+
+    <!-- Practical Tips -->
+    <div class="explore-tips fade-up">
+      <h3><i class="fa fa-lightbulb text-gold"></i>&nbsp; Practical Tips</h3>
+      <ul>
+        <li>Our front desk arranges taxis and auto-rickshaws 24/7</li>
+        <li>Pune Metro (Shivajinagar station) is ~2km away</li>
+        <li>Best time to visit forts: early morning (6–9 AM)</li>
+        <li>Carry cash for local markets — many vendors are card-free</li>
+        <li>Monsoon (June–September) makes hills and forts lush and beautiful</li>
+        <li>Call us for a trusted cab driver: 020-25655405</li>
+      </ul>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="explore-filters">
+      <button class="filter-btn btn-navy active" onclick="filterExplore('all',this)">All</button>
+      <button class="filter-btn btn-outline-navy" onclick="filterExplore('heritage',this)">Heritage &amp; Culture</button>
+      <button class="filter-btn btn-outline-navy" onclick="filterExplore('nature',this)">Nature &amp; Outdoors</button>
+      <button class="filter-btn btn-outline-navy" onclick="filterExplore('shopping',this)">Shopping &amp; Markets</button>
+      <button class="filter-btn btn-outline-navy" onclick="filterExplore('dining',this)">Food &amp; Cafés</button>
+      <button class="filter-btn btn-outline-navy" onclick="filterExplore('sports',this)">Sports &amp; Recreation</button>
+      <button class="filter-btn btn-outline-navy" onclick="filterExplore('family',this)">Family</button>
+    </div>
+
+    <div class="explore-grid" id="exploreGrid">
+
+      <!-- Heritage & Culture -->
+      <div class="explore-card fade-up" data-cat="heritage">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1598091383021-15ddea10925d?w=600&q=80" alt="Shaniwar Wada">
+          <span class="explore-card-cat cat-heritage">Heritage</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Shaniwar Wada</h3>
+          <p>The iconic 18th-century Peshwa fortress is one of Pune's most visited landmarks. Explore its grand gates, ancient cannons, and beautifully lit sound-and-light show in the evenings.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~4 km</span>
+            <span><i class="fa fa-clock text-gold"></i> 8 AM – 6:30 PM</span>
+            <span><i class="fa fa-rupee-sign text-gold"></i> ₹25 entry</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explore-card fade-up" data-cat="heritage">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1589483232748-515c025575bc?w=600&q=80" alt="Aga Khan Palace">
+          <span class="explore-card-cat cat-heritage">Heritage</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Aga Khan Palace</h3>
+          <p>A symbol of India's freedom movement — this stunning palace was where Mahatma Gandhi and Kasturba Gandhi were interned. Its sprawling lawns and Italian arches are breathtaking.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~8 km</span>
+            <span><i class="fa fa-clock text-gold"></i> 9 AM – 5:30 PM</span>
+            <span><i class="fa fa-rupee-sign text-gold"></i> ₹25 entry</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explore-card fade-up" data-cat="heritage">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&q=80" alt="Raja Kelkar Museum">
+          <span class="explore-card-cat cat-heritage">Heritage</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Raja Kelkar Museum</h3>
+          <p>Home to one of India's most fascinating private collections — over 20,000 artefacts including antique lamps, miniature paintings, musical instruments, and rare medieval objects.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~5 km</span>
+            <span><i class="fa fa-clock text-gold"></i> 10 AM – 5:30 PM</span>
+            <span><i class="fa fa-rupee-sign text-gold"></i> ₹100 entry</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explore-card fade-up" data-cat="heritage">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=600&q=80" alt="Parvati Hill">
+          <span class="explore-card-cat cat-heritage">Heritage</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Parvati Hill &amp; Temple</h3>
+          <p>Climb 103 steps to reach this hilltop temple complex with panoramic views over Pune. One of the oldest heritage structures in the city, it's a perfect sunrise spot.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~5 km</span>
+            <span><i class="fa fa-clock text-gold"></i> 6 AM – 8 PM</span>
+            <span><i class="fa fa-rupee-sign text-gold"></i> Free entry</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nature & Outdoors -->
+      <div class="explore-card fade-up" data-cat="nature">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Sinhagad Fort">
+          <span class="explore-card-cat cat-nature">Nature</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Sinhagad Fort</h3>
+          <p>One of Maharashtra's most iconic hill forts — a popular trek with sweeping Sahyadri mountain views. Don't miss the famous local 'pithla-bhakri' food stalls at the top.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~35 km</span>
+            <span><i class="fa fa-clock text-gold"></i> Sunrise – Sunset</span>
+            <span><i class="fa fa-hiking text-gold"></i> Moderate trek</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explore-card fade-up" data-cat="nature">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80" alt="Khadakwasla Dam">
+          <span class="explore-card-cat cat-nature">Nature</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Khadakwasla Dam</h3>
+          <p>A scenic reservoir on the outskirts of Pune — ideal for an evening drive, sunset picnics, and photography. Especially spectacular during and after the monsoon season.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~20 km</span>
+            <span><i class="fa fa-clock text-gold"></i> All day</span>
+            <span><i class="fa fa-rupee-sign text-gold"></i> Free entry</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explore-card fade-up" data-cat="nature">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80" alt="Mulshi Dam">
+          <span class="explore-card-cat cat-nature">Nature</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Mulshi Lake &amp; Backwaters</h3>
+          <p>A serene escape into the Western Ghats — lush green hills, a vast lake, and quiet villages. Perfect for a day trip, boating, or simply unwinding in nature.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~45 km</span>
+            <span><i class="fa fa-clock text-gold"></i> All day</span>
+            <span><i class="fa fa-car text-gold"></i> Day trip</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shopping & Markets -->
+      <div class="explore-card fade-up" data-cat="shopping">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&q=80" alt="FC Road">
+          <span class="explore-card-cat cat-shopping">Shopping</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>FC Road &amp; JM Road</h3>
+          <p>Pune's most vibrant streets — lined with boutique stores, bookshops, street food stalls, and cafés. A favourite haunt of students and young professionals. Perfect for an evening stroll.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~2 km</span>
+            <span><i class="fa fa-clock text-gold"></i> 10 AM – 11 PM</span>
+            <span><i class="fa fa-walking text-gold"></i> Walking distance</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explore-card fade-up" data-cat="shopping">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80" alt="Westend Mall">
+          <span class="explore-card-cat cat-shopping">Shopping</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Westend Mall</h3>
+          <p>A popular multi-level mall right in the heart of the city with fashion brands, a food court, cinema, and entertainment — a one-stop destination for leisure shopping.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~3 km</span>
+            <span><i class="fa fa-clock text-gold"></i> 10 AM – 10 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explore-card fade-up" data-cat="shopping">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=600&q=80" alt="Laxmi Road Market">
+          <span class="explore-card-cat cat-shopping">Shopping</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Laxmi Road &amp; Tulsi Baug</h3>
+          <p>Pune's oldest and busiest market area — famous for traditional Maharashtrian jewellery, textiles, sarees, kitchenware, and religious items at great prices.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~5 km</span>
+            <span><i class="fa fa-clock text-gold"></i> 10 AM – 9 PM</span>
+            <span><i class="fa fa-rupee-sign text-gold"></i> Best deals in Pune</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Food & Cafés -->
+      <div class="explore-card fade-up" data-cat="dining">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Koregaon Park">
+          <span class="explore-card-cat cat-dining">Dining</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Koregaon Park Café District</h3>
+          <p>Pune's trendiest neighbourhood — home to upscale restaurants, rooftop cafés, art galleries, and boutique stores. The famous German Bakery and many acclaimed eateries are here.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~7 km</span>
+            <span><i class="fa fa-clock text-gold"></i> Noon – Midnight</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explore-card fade-up" data-cat="dining">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Camp Area MG Road">
+          <span class="explore-card-cat cat-dining">Dining</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Camp Area &amp; MG Road</h3>
+          <p>Pune's cosmopolitan zone — full of Irani cafés, iconic bakeries (try Kayani or Dorabjee's), multicuisine restaurants, and bars. East Street is a must-walk for food lovers.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~6 km</span>
+            <span><i class="fa fa-clock text-gold"></i> 8 AM – 11 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sports & Recreation -->
+      <div class="explore-card fade-up" data-cat="sports">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=600&q=80" alt="Balewadi Sports Complex">
+          <span class="explore-card-cat cat-sports">Sports</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Balewadi Sports Complex</h3>
+          <p>A world-class multi-sport facility — venue of the 2008 Commonwealth Youth Games. It hosts cricket, football, swimming, and athletics events throughout the year.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~4 km</span>
+            <span><i class="fa fa-clock text-gold"></i> 6 AM – 10 PM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explore-card fade-up" data-cat="sports">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=600&q=80" alt="ICC Convention Centre">
+          <span class="explore-card-cat cat-sports">Convention</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>International Convention Centre</h3>
+          <p>Directly opposite Hotel Sahara — Pune's premier venue for conferences, trade shows, exhibitions, and cultural events. Perfect for business travellers attending ICC events.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> Opposite hotel</span>
+            <span><i class="fa fa-walking text-gold"></i> 2-minute walk</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Family -->
+      <div class="explore-card fade-up" data-cat="family">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&q=80" alt="Katraj Snake Park">
+          <span class="explore-card-cat cat-family">Family</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Rajiv Gandhi Zoological Park</h3>
+          <p>Home to leopards, bears, crocodiles, snakes and hundreds of bird species — this well-maintained zoo and snake park is great for families and nature enthusiasts.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~15 km</span>
+            <span><i class="fa fa-clock text-gold"></i> 9:30 AM – 5:30 PM</span>
+            <span><i class="fa fa-rupee-sign text-gold"></i> ₹30 entry</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="explore-card fade-up" data-cat="family">
+        <div class="explore-card-img">
+          <img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=600&q=80" alt="Osho Ashram">
+          <span class="explore-card-cat cat-family">Wellness</span>
+        </div>
+        <div class="explore-card-body">
+          <h3>Osho International Meditation Resort</h3>
+          <p>One of the world's most visited meditation centres — a lush green oasis in Koregaon Park offering daily meditation sessions, spa treatments, and mindfulness programmes.</p>
+          <div class="explore-meta">
+            <span><i class="fa fa-map-marker-alt text-gold"></i> ~7 km</span>
+            <span><i class="fa fa-clock text-gold"></i> 9 AM – 9 PM</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.explore-grid -->
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section section-dark" style="padding:56px 0">
+  <div class="container" style="text-align:center">
+    <h2 style="color:var(--white);margin-bottom:12px">Ready to explore?</h2>
+    <div class="ornament"><span>✦</span></div>
+    <p style="color:rgba(255,255,255,0.7);margin-bottom:28px;max-width:500px;margin-left:auto;margin-right:auto">
+      Book your stay at Hotel Sahara and let our front desk team arrange your Pune adventures — cabs, guides, and local tips included.
+    </p>
+    <a href="rooms.html" class="btn btn-gold">
+      <i class="fa fa-calendar-check"></i>&nbsp; Book Your Stay
+    </a>
+  </div>
+</section>
+
+<a href="https://wa.me/919822393889" class="whatsapp-btn" target="_blank" rel="noopener">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo-white.png" alt="Hotel Sahara" style="height:52px;width:auto;margin-bottom:12px">
+        <p>Comfortable, elegant accommodations in the heart of Pune.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="rooms.html">Our Rooms</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="explore.html">Explore Pune</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Rooms</h4>
+        <ul class="footer-links">
+          <li><a href="rooms.html?room=executive">Executive AC — Single</a></li>
+          <li><a href="rooms.html?room=executive">Executive AC — Double</a></li>
+          <li><a href="rooms.html?room=deluxe">Deluxe AC — Single</a></li>
+          <li><a href="rooms.html?room=deluxe">Deluxe AC — Double</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li><span class="fc-icon"><i class="fa fa-phone"></i></span><span><a href="tel:02025655405">020-2565 5405/6/8/9</a></span></li>
+          <li><span class="fc-icon"><i class="fa fa-envelope"></i></span><span><a href="mailto:bookingsahara@rediffmail.com">bookingsahara@rediffmail.com</a></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Hotel Sahara, Pune. All rights reserved.</span>
+      <a href="admin.html" style="color:rgba(255,255,255,0.3);font-size:0.75rem">Staff Login</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  function filterExplore(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.className = 'filter-btn btn-outline-navy';
+    });
+    btn.className = 'filter-btn btn-navy active';
+    document.querySelectorAll('.explore-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
