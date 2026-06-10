@@ -3,7 +3,7 @@
    Theme: Classic & Elegant | Navy · Gold · Cream
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Yellowtail&display=swap');
 
 :root {
   --navy:        #1B2A4A;
@@ -158,11 +158,11 @@ p{line-height:1.75;color:var(--gray)}
   text-transform:uppercase;
 }
 .hero-title strong{
-  font-family:'Sacramento',cursive;font-weight:400;
+  font-family:'Yellowtail',cursive;font-weight:400;
   color:var(--gold-light);display:block;
-  font-size:1.6em;letter-spacing:2px;text-transform:none;
+  font-size:1.55em;letter-spacing:2px;text-transform:none;
   text-shadow:0 4px 32px rgba(0,0,0,0.4), 0 0 60px rgba(201,168,76,0.15);
-  line-height:1.1;
+  line-height:1.15;
 }
 .hero-tagline{
   font-family:var(--font-display);font-size:clamp(1rem,2.5vw,1.45rem);
